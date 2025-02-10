@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Same{% endblock %}
+
+{% block main %}
+<article>
+    <h2>Lista de Prontuários SAME</h2>
+</article>
+<form action="">
+    <label for="search">Buscar</label>
+    <input list="search" name="search_same">
+    <button type="submit">Buscar</button>
+    <datalist id="search">
+        {% for p in object_list %}
+            {% if p.num_prontuario != None %}
+                <option value="{{p.num_prontuario}}">{{p}}</option>
+            {% else %}
+                <option>NEM UM DADO ENCONTRADO</option>
+            {% endif %}
+        {% endfor %}
+    </datalist>
+</form>
+<article>
+    <p>Para Cadastrar Prontuários <h3><a href="{% url 'cadastrar_same' %}">Clique Aqui</a></h3></p>
+</article>
+<h2>Resultado da Busca</h2>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Data de Entrada</th>
+        <th>Ficha</th>
+        <th>Prontuário</th>
+        <th>Nome</th>
+        <th>Pasta Arquivo</th>
+        <th>Imprimir</th>
+        <th>Editar</th>
+    </tr>
+    {% for p in queryset_same %}
+    <tr>        
+        <td>{{p.id}}</td>
+        <td>{{p.data_atendimento}}</td>
+        <td>{{p.num_ficha_atendimento}}</td>
+        <td>{{p.num_prontuario}}</td>
+        <td>{{p.nome_paciente}}</td>
+        <td>{{p.num_caixa_arquivo}}</td>
+        <td><a href="{% url 'imprimir_same' p.id %}">Imprimir</a></td>
+        <td><a href="{% url 'editar_same' p.id %}">Editar</a></td>        
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

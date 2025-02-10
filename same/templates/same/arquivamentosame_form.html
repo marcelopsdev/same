@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+
+{% block title %}Arquivamentosame{% endblock %}
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+  <div>
+    {{ form.data_atendimento.erros }}
+    <label for="fname">Data do Atendimento:</label>
+    {{ form.data_atendimento }}
+  </div>
+  <div>
+    {{ form.num_ficha_atendimento.erros }}
+    <label for="fname">Num Ficha Atendimento:</label>
+    {{ form.num_ficha_atendimento }}
+  </div>
+  <div>
+    {{ form.num_prontuario.erros }}
+    <label for="fname">Num Prontuario:</label>
+    {{ form.num_prontuario }}
+  </div>
+  <div>
+    {{ form.nome_paciente.erros }}
+    <label for="fname">Nome do Paciente:</label>
+    {{ form.nome_paciente }}
+  </div>
+  <div>
+    {{ form.data_nascimento.erros }}
+    <label for="fname">Data de Nascimento:</label>
+    {{ form.data_nascimento }}
+  </div>
+  <div>
+    {{ form.mes_faturamento.erros }}
+    <label for="fname">Mes Faturamento:</label>
+    {{ form.mes_faturamento }}
+  </div>
+  <div>
+    {{ form.data_arquivamento.erros }}
+    <label for="fname">Data do Arquivamento:</label>
+    {{ form.data_arquivamento }}
+  </div>
+  <div>
+    {{ form.num_caixa_arquivo.erros }}
+    <label for="fname">Num Caixa Arquivo:</label>
+    {{ form.num_caixa_arquivo }}
+  </div>
+  <div>
+    {{ form.sexo.erros }}
+    <label for="fname">Sexo:</label>
+    {{ form.sexo }}
+  </div>
+  <div>
+    {{ form.raca_cor.erros }}
+    <label for="fname">Raca Cor:</label>
+    {{ form.raca_cor }}
+  </div>
+  <div>
+    {{ form.municipio.erros }}
+    <label for="fname">Municipio:</label>
+    {{ form.municipio }}
+    <datalist id="search">
+      {% for c in queryset_cityes %}
+          <option value="{{c.name}}">{{c.uf}}</option>
+      {% endfor %}
+    </datalist>
+  </div>
+  <div>
+    {{ form.tipo_prontuario.erros }}
+    <label for="fname">Tipo de Prontuario:</label>
+    {{ form.tipo_prontuario }}
+  </div>
+  <div>
+    {{ form.upload_prontuario.erros }}
+    <label for="fname">Upload do Prontuario:</label>
+    {{ form.upload_prontuario }}
+  </div>
+  <div>
+    <label for="fname">Criado por: {{user}}</label>    
+  </div>
+  <div>
+    <input class="btn btn-primary" type="submit" value="Salvar">
+  </div>
+</form>
+{% endblock %}

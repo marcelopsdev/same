@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Same{% endblock %}
+
+{% block main %}
+<article>
+    <h2>Lista de Prontuários SAME</h2>
+</article>
+<h2>Resultado da Busca</h2>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Data de Entrada</th>
+        <th>Ficha</th>
+        <th>Prontuário</th>
+        <th>Nome</th>
+        <th>Pasta Arquivo</th>
+        <th>PDF</th>
+        <th>Imprimir</th>
+        <th>Editar</th>
+    </tr>
+    {% for p in queryset_imprimir %}
+    <tr>        
+        <td>{{p.id}}</td>
+        <td>{{p.data_atendimento}}</td>
+        <td>{{p.num_ficha_atendimento}}</td>
+        <td>{{p.num_prontuario}}</td>
+        <td>{{p.nome_paciente}}</td>
+        <td>{{p.num_caixa_arquivo}}</td>
+        <td>{{p.upload_prontuario}}</td>
+        <td><a href="{% url 'imprimir_same' p.id %}">Imprimir</a></td>
+        <td><a href="{% url 'editar_same' p.id %}">Editar</a></td>        
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
